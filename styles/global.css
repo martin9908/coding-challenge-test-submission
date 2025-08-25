@@ -10,12 +10,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-/* TODO: Add the 'Roboto' font from Google fonts and add it as a global CSS var called `--font-primary` */
-/* TODO: Make application responsive. It is already for the most part, but it is not optimal for smaller screens.
-* - Making the application responsive using the Mobile First principle.
-*/
-
 :root {
+  --font-primary: "Roboto", sans-serif, /* Import Roboto */
   --border-radius-default: 4px;
   --border-radius-xl: 15px;
   --color-accent: #cacfdd;
@@ -24,8 +20,8 @@ code {
   --color-brand: #413ef7;
   --color-text: #141925;
   --color-text-light: #72787d;
-  --width-input: 20rem;
-  --width-content: 30rem;
+  --width-input: 100%; /* Mobile First */
+  --width-content: 100%; /* Mobile First */
 }
 
 * {
@@ -33,14 +29,18 @@ code {
 }
 
 body {
+  margin: 0;
   accent-color: var(--color-brand);
   font-size: 18px;
   font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: var(--color-accent);
 }
 
 main {
-  padding: 2rem;
+  padding: 1rem; /* Smaller padding for mobile */
+  max-width: 100%;
 }
 
 small {
@@ -61,4 +61,24 @@ fieldset {
 
 legend {
   color: var(--color-text-light);
+}
+
+/*  Tablet (≥768px) */
+@media (min-width: 768px) {
+  :root {
+    --width-input: 20rem;
+    --width-content: 30rem;
+  }
+
+  main {
+    padding: 2rem;
+  }
+}
+
+/*  Desktop (≥1200px) */
+@media (min-width: 1200px) {
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+  }
 }

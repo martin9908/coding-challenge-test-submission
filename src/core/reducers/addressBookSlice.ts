@@ -3,26 +3,43 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 // Define a type for the slice state
-interface CounterState {
+interface AddressBookState {
   addresses: Address[];
 }
 
 // Define the initial state using that type
-const initialState: CounterState = {
+const initialState: AddressBookState = {
   addresses: [],
 };
 
 export const addressBookSlice = createSlice({
-  name: "address",
-  // `createSlice` will infer the state type from the `initialState` argument
+  name: "addressBook",
   initialState,
   reducers: {
     addAddress: (state, action: PayloadAction<Address>) => {
-      /** TODO: Prevent duplicate addresses */
-      state.addresses.push(action.payload);
+      /** Prevent duplicate addresses
+       * Here we assume uniqueness is based on a combination of postcode + streetnumber
+       * (adjust if your Address type has an `id` or other unique key)
+       */
+      const exists = state.addresses.some(
+        (addr) =>
+          addr.postcode === action.payload.postcode &&
+          addr.street === action.payload.street
+      );
+
+      if (!exists) {
+        state.addresses.push(action.payload);
+      }
     },
-    removeAddress: (state, action: PayloadAction<string>) => {
-      /** TODO: Write a state update which removes an address from the addresses array. */
+    removeAddress: (state, action: PayloadAction<Address>) => {
+      /** Remove address by ID (or another unique field) */
+      state.addresses = state.addresses.filter(
+        (addr) =>
+          !(
+            addr.postcode === action.payload.postcode &&
+            addr.street === action.payload.street
+          )
+      );
     },
     updateAddresses: (state, action: PayloadAction<Address[]>) => {
       state.addresses = action.payload;
@@ -33,7 +50,7 @@ export const addressBookSlice = createSlice({
 export const { addAddress, removeAddress, updateAddresses } =
   addressBookSlice.actions;
 
-// // Other code such as selectors can use the imported `RootState` type
+// Selector
 export const selectAddress = (state: RootState) => state.addressBook.addresses;
 
 export default addressBookSlice.reducer;
