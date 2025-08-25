@@ -20,6 +20,34 @@
   transform: scale(0.95);
 }
 
-/** TODO: Create separate styles for .primary and .secondary variants of this button:
-* - Must use the CSS variables declared in App.css
-*/
+/* Primary Variant */
+.primary {
+  background-color: var(--color-brand);
+  border: 1px solid var(--color-brand);
+  color: #fff;
+}
+
+.primary:hover {
+  background-color: #2f2dd9; /* darker shade of brand */
+  border-color: #2f2dd9;
+}
+
+.primary:active {
+  background-color: #2221b8;
+  border-color: #2221b8;
+}
+
+/* Secondary Variant */
+.secondary {
+  background-color: transparent;
+  border: 1px solid var(--color-brand);
+  color: var(--color-brand);
+}
+
+.secondary:hover {
+  background-color: rgba(65, 62, 247, 0.1); /* subtle brand tint */
+}
+
+.secondary:active {
+  background-color: rgba(65, 62, 247, 0.2);
+}

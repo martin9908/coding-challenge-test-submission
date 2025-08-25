@@ -10,11 +10,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-/* TODO: Add the 'Roboto' font from Google fonts and add it as a global CSS var called `--font-primary` */
-/* TODO: Make application responsive. It is already for the most part, but it is not optimal for smaller screens.
-* - Making the application responsive using the Mobile First principle.
-*/
-
 :root {
   --font-primary: "Roboto", sans-serif, /* Import Roboto */
   --border-radius-default: 4px;
@@ -68,51 +63,7 @@ legend {
   color: var(--color-text-light);
 }
 
-button {
-  font-family: var(--font-primary);
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: var(--border-radius-default);
-  padding: 0.6rem 1.25rem;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  border: none;
-}
-
-/* ✅ Primary Button */
-button.primary {
-  background-color: var(--color-brand); /* #413ef7 */
-  color: #fff;
-  border: 1px solid var(--color-brand);
-}
-
-button.primary:hover {
-  background-color: #2f2dd9; /* darker shade */
-  border-color: #2f2dd9;
-}
-
-button.primary:active {
-  background-color: #2221b8;
-  border-color: #2221b8;
-}
-
-/* ✅ Secondary Button */
-button.secondary {
-  background-color: transparent;
-  color: var(--color-brand); /* #413ef7 */
-  border: 1px solid var(--color-brand);
-}
-
-button.secondary:hover {
-  background-color: rgba(65, 62, 247, 0.1); /* subtle brand tint */
-}
-
-button.secondary:active {
-  background-color: rgba(65, 62, 247, 0.2);
-}
-
-
-/* ✅ Tablet (≥768px) */
+/*  Tablet (≥768px) */
 @media (min-width: 768px) {
   :root {
     --width-input: 20rem;
@@ -124,7 +75,7 @@ button.secondary:active {
   }
 }
 
-/* ✅ Desktop (≥1200px) */
+/*  Desktop (≥1200px) */
 @media (min-width: 1200px) {
   main {
     max-width: 960px;

@@ -1,6 +1,6 @@
 import { ButtonType, ButtonVariant } from "@/types";
 import React, { FunctionComponent } from "react";
-
+import clsx from "clsx"; //  helps with conditional classes
 import $ from "./Button.module.css";
 
 interface ButtonProps {
@@ -20,15 +20,20 @@ const Button: FunctionComponent<ButtonProps> = ({
 }) => {
   return (
     <button
-      // TODO: Add conditional classNames
-      // - Must have a condition to set the '.primary' className
-      // - Must have a condition to set the '.secondary' className
-      // - Display loading spinner per demo video. NOTE: add data-testid="loading-spinner" for spinner element (used for grading)
-      className={$.button}
       type={type}
       onClick={onClick}
+      className={clsx(
+        $.button,
+        variant === "primary" && $.primary,
+        variant === "secondary" && $.secondary
+      )}
+      disabled={loading} // prevent clicks while loading
     >
-      {children}
+      {loading ? (
+        <span data-testid="loading-spinner" className={$.spinner}></span>
+      ) : (
+        children
+      )}
     </button>
   );
 };
