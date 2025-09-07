@@ -5,7 +5,9 @@ import $ from "./InputText.module.css";
 interface InputTextProps {
   name: string;
   placeholder: string;
-  value: string;
+  value?: string | number | readonly string[];
+  required?: boolean;
+  minLength?: number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -13,6 +15,8 @@ const InputText: FunctionComponent<InputTextProps> = ({
   name,
   onChange,
   placeholder,
+  required,
+  minLength,
   value,
 }) => {
   return (
@@ -24,6 +28,8 @@ const InputText: FunctionComponent<InputTextProps> = ({
       placeholder={placeholder}
       type="text"
       value={value}
+      minLength={minLength}
+      required={required}
     />
   );
 };
