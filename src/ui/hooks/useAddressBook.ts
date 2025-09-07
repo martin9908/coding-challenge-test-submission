@@ -23,8 +23,12 @@ export default function useAddressBook() {
   return {
     /** Add address to the redux store */
     addAddress: (address: Address) => {
+          const exists = addresses.some(
+        a => a.street === address.street && a.postcode === address.postcode && a.houseNumber === address.houseNumber
+      );
+      if (exists) return false;
       dispatch(addAddress(address));
-      updateDatabase();
+      return true;
     },
     /** Remove address by ID from the redux store */
     removeAddress: (id: string) => {
